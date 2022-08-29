@@ -1,4 +1,5 @@
 let color = "black";
+let click = true;
 
 function populateBoard(size) {
     let board = document.querySelector('.board');
@@ -19,23 +20,27 @@ function populateBoard(size) {
     }
 }
 
-populateBoard(16);
+populateBoard(32);
 
 function changeSize(input) {
-    if (input >= 2 && input <= 100)
+    if (input >= 2 && input <= 100){
+        document.querySelector('.error').style.display = 'none';
         populateBoard(input);
+    }
     else {
-        alert("Number of Squares must be in range [2,100]");
+        document.querySelector('.error').style.display = 'flex';
     }
 
 }
 
 function colorSquare() {
-    if (color === "random") {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
-    }
-    else {
-        this.style.backgroundColor = color;
+    if (click) {
+        if (color === "random") {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+        }
+        else {
+            this.style.backgroundColor = color;
+        }
     }
 }
 
@@ -50,3 +55,13 @@ function resetBoard() {
     let squares = board.querySelectorAll("div");
     squares.forEach((div) => {div.style.backgroundColor = "white"});
 }
+
+document.querySelector('body').addEventListener('click', (ev) => {
+    if (ev.target.tagName != "BUTTON") {
+        click = !click;
+        if (click) 
+            document.querySelector('.mode').textContent = "Mode: Coloring";
+        else
+            document.querySelector('.mode').textContent = "Mode: Not Coloring";
+    }
+})

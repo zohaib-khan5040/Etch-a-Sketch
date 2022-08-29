@@ -13,6 +13,9 @@
         <div class="title">
             <h1>SketchPad</h1>
         </div>
+
+        <div class="mode">Mode: Coloring</div>
+
         <div class="content">
 
             <div class="board"></div>
@@ -25,9 +28,11 @@
                 <button onclick="resetBoard()">Reset</button>
             </div>
 
-            <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)">
+            <input type="text" placeholder="Size of Board" value="32" onchange="changeSize(this.value)">
             <button>Set Size</button>
         </div>
+
+        <div class="error">Input must be between 2 and 100!</div>
     </div>
 </body>
 <script src="main.js"></script>
